@@ -123,7 +123,7 @@ const Features = () => {
       elements.forEach((el) => {
         el.classList.remove("animate-fade-in");
         // Force reflow
-        el.offsetHeight;
+        (el as HTMLElement).offsetHeight;
         el.classList.add("animate-fade-in");
       });
     }
@@ -131,10 +131,18 @@ const Features = () => {
   
   return (
     <section className={cn(
-      "py-12 sm:py-16 md:py-20 pb-0 relative transition-all duration-500",
-      theme === 'dark' ? "bg-dark-background" : "bg-cal-100"
+      "py-12 sm:py-16 md:py-20 pb-0 relative overflow-hidden transition-all duration-500",
+      theme === 'dark' 
+        ? "bg-gradient-to-b from-dark-background to-dark-900"
+        : "bg-gradient-to-b from-cal-100 to-cal-50"
     )} id="features" ref={sectionRef}>
-      <div className="section-container">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-pulse-100 to-indigo-100 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full blur-3xl opacity-40"></div>
+      </div>
+
+      <div className="section-container relative z-10">
         <div className="text-center mb-10 sm:mb-16">
           <div className="pulse-chip mx-auto mb-3 sm:mb-4 opacity-0 fade-in-element">
             <span>Services</span>
@@ -171,6 +179,24 @@ const Features = () => {
             title="Content Creation"
             description="SEO-driven content, blogs, and media that amplify your brand voice and drive engagement."
             index={2}
+          />
+           <FeatureCard
+            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M6 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-2"></path><path d="M6 2v4"></path><path d="M6 2h12a2 2 0 0 1 2 2v4"></path><path d="M6 18h12"></path><path d="M6 14h12"></path><path d="M6 10h12"></path></svg>}
+            title="Printing Services"
+            description="Professional printing solutions for business cards, flyers, banners, and marketing materials with high-quality finishes."
+            index={3}
+          />
+          <FeatureCard
+            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><path d="M8 7h8"></path><path d="M8 11h8"></path><path d="M8 15h5"></path></svg>}
+            title="Blogs"
+            description="Engaging blog content and articles that establish thought leadership and drive organic traffic to your website."
+            index={4}
+          />
+          <FeatureCard
+            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>}
+            title="SMM and Digital Marketing"
+            description="Comprehensive social media management and digital marketing strategies to boost your online presence and engagement."
+            index={5}
           />
         </div>
       </div>
